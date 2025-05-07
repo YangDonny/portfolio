@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donny Yang - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth; /* Ensures smooth scrolling for anchor links */
+        }
+        .nav-link {
+            @apply px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-200 hover:text-slate-900 transition-colors;
+        }
+        .section-title {
+            @apply text-3xl md:text-4xl font-bold text-slate-800 mb-8 md:mb-12 text-center;
+        }
+        .card {
+            @apply bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl;
+        }
+        .btn {
+            @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+        }
+        /* Primary button style - using teal as an accent */
+        .btn-primary {
+            @apply bg-teal-600 text-white hover:bg-teal-700 shadow-md hover:shadow-lg;
+        }
+        /* Secondary/default button style - more subdued */
+        .btn-secondary {
+            @apply bg-slate-600 text-slate-100 hover:bg-slate-500 shadow-sm hover:shadow-md;
+        }
+        .link-accent {
+            @apply text-teal-600 hover:text-teal-700 font-medium;
+        }
+        .tag {
+            @apply inline-block bg-slate-200 text-slate-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full;
+        }
+        /* Custom scrollbar for a more elegant feel (optional) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; /* Light gray track */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; /* slate-300 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; /* slate-500 */
+        }
+        .list-item-spacing > li {
+            @apply mb-1;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-700 antialiased">
+
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#home" class="text-2xl font-bold text-slate-800">Donny Yang</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="nav-link">Home</a>
+                        <a href="#about" class="nav-link">About</a>
+                        <a href="#products" class="nav-link">Products</a>
+                        <a href="#asus-product-list" class="nav-link">ASUS Models</a>
+                        <a href="#experience" class="nav-link">Experience</a>
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobile-menu-button" class="bg-slate-100 inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-slate-700 hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-slate-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block nav-link text-base">Home</a>
+                <a href="#about" class="block nav-link text-base">About</a>
+                <a href="#products" class="block nav-link text-base">Products</a>
+                <a href="#asus-product-list" class="block nav-link text-base">ASUS Models</a>
+                <a href="#experience" class="block nav-link text-base">Experience</a>
+                <a href="#contact" class="block nav-link text-base">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="bg-slate-800 text-white pt-32 pb-20 md:pt-40 md:pb-28">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+                Hi, I'm Donny Yang
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 mb-10 max-w-2xl mx-auto">
+                A passionate Product Manager focused on creating innovative Technology Products.
+            </p>
+            <a href="#products" class="btn btn-primary text-lg px-8 py-4">View My Products</a>
+            <a href="#contact" class="btn btn-secondary text-lg px-8 py-4 ml-4">Get In Touch</a>
+        </div>
+    </header>
+
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title">About Me</h2>
+            <div class="md:flex md:items-center md:space-x-12">
+                <div class="md:w-1/3 mb-8 md:mb-0 text-center">
+                    <img src="https://placehold.co/300x300/E2E8F0/475569?text=Your+Photo" alt="Donny Yang" class="rounded-full shadow-xl mx-auto w-48 h-48 md:w-64 md:h-64 object-cover">
+                </div>
+                <div class="md:w-2/3">
+                    <p class="text-lg text-slate-600 leading-relaxed mb-4">
+                        Hello! I'm Donny. [Insert a brief introduction about yourself. What are you passionate about? What drives you in your professional field? Mention 2-3 key strengths or areas of expertise related to product design, development, or your specific field. This text is TBD by you.]
+                    </p>
+                    <p class="text-lg text-slate-600 leading-relaxed mb-4">
+                        [Add another paragraph with more details. Perhaps your journey into your current field, your design philosophy, or specific types of products/projects you enjoy creating. Keep it concise and engaging. This text is TBD by you.]
+                    </p>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="py-16 md:py-24 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title">My Products</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                <div class="card">
+                    <img src="https://placehold.co/600x400/D1D5DB/1F2937?text=All-in-One+PC+Alpha" alt="All-in-One PC Alpha" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">All-in-One PC Alpha</h3>
+                        <p class="text-slate-600 text-sm mb-4">
+                            [Brief description of the first All-in-One PC. Highlight key features, design aspects, or target user.]
+                        </p>
+                        <a href="#" target="_blank" class="link-accent inline-flex items-center">
+                            View Details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <div class="mt-4">
+                            <span class="tag">All-in-One PC</span>
+                            <span class="tag">Performance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="https://placehold.co/600x400/9CA3AF/111827?text=All-in-One+PC+Beta" alt="All-in-One PC Beta" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">All-in-One PC Beta</h3>
+                        <p class="text-slate-600 text-sm mb-4">
+                            [Brief description of the second All-in-One PC. Emphasize different features or design choices compared to the first one.]
+                        </p>
+                        <a href="#" target="_blank" class="link-accent inline-flex items-center">
+                            View Details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <div class="mt-4">
+                            <span class="tag">All-in-One PC</span>
+                            <span class="tag">Compact Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                     <img src="https://placehold.co/600x400/E5E7EB/374151?text=Chromebook+Swift" alt="Chromebook Swift" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Chromebook Swift</h3>
+                        <p class="text-slate-600 text-sm mb-4">
+                           [Brief description of the Chromebook. Focus on its portability, security, or target audience like students/professionals.]
+                        </p>
+                        <a href="#" target="_blank" class="link-accent inline-flex items-center">
+                            View Details
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                         <div class="mt-4">
+                            <span class="tag">Chromebook</span>
+                            <span class="tag">Cloud OS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="https://placehold.co/600x400/F3F4F6/4B5563?text=Website+Innovate" alt="Website Innovate" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Website Project: Innovate</h3>
+                        <p class="text-slate-600 text-sm mb-4">
+                           [Description of the first website project. Mention its purpose, key features, and technologies used, e.g., e-commerce, portfolio.]
+                        </p>
+                        <a href="#" target="_blank" class="link-accent inline-flex items-center">
+                            View Live Site
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                         <div class="mt-4">
+                            <span class="tag">Web Development</span>
+                            <span class="tag">UX/UI</span>
+                         </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="https://placehold.co/600x400/E5E7EB/1F2937?text=Website+Connect" alt="Website Connect" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Website Project: Connect</h3>
+                        <p class="text-slate-600 text-sm mb-4">
+                           [Description of the second website project. Highlight different aspects, perhaps a different type of site or technology stack.]
+                        </p>
+                        <a href="#" target="_blank" class="link-accent inline-flex items-center">
+                            View Live Site
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                         <div class="mt-4">
+                            <span class="tag">Web Design</span>
+                            <span class="tag">Frontend</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="asus-product-list" class="py-16 md:py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title">ASUS Product Involvement</h2>
+            <p class="text-center text-slate-600 leading-relaxed mb-10 max-w-2xl mx-auto">
+                During my tenure at ASUS, I contributed to the development and creation of a wide range of products. Below is a list of models I was involved with:
+            </p>
+            <div class="grid md:grid-cols-2 gap-x-8 gap-y-6 text-slate-700">
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3 border-b pb-2">All-in-One PCs</h3>
+                    <ul class="list-disc list-inside space-y-1 pl-2 list-item-spacing">
+                        <li><strong>A7 Series:</strong> A7700WMV, A7700WMA, A7400WMF, A7400WMA</li>
+                        <li><strong>M3 Series (2WFA):</strong> M3202WFA, M3402WFA, M3702WFA</li>
+                        <li><strong>M3 Series (WUA):</strong> M3200WUA, M3400WUA, M3700WUA</li>
+                        <li><strong>V241 Series:</strong> V241EA, V241EP</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3 border-b pb-2">Chromebooks</h3>
+                    <ul class="list-disc list-inside space-y-1 pl-2 list-item-spacing">
+                        <li><strong>CX Series:</strong> CX3400FMA</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-16 md:py-24 bg-slate-100"> 
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title">Experience & Skills</h2>
+            <div class="space-y-8 mb-10">
+                <div>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-1">[Your Job Title at ASUS]</h3>
+                    <p class="text-md text-slate-500 mb-2">ASUS | [City, State] | [Dates of Employment]</p>
+                    <p class="text-slate-600 mb-2">
+                        Contributed to the design, development, or launch of various All-in-One PCs and Chromebooks, including models from the A7, M3, V241, and CX series. 
+                        [Add 1-2 more specific achievements or responsibilities from your role at ASUS here.]
+                    </p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1 pl-4">
+                        <li>[Responsibility or achievement 1 related to product design/development]</li>
+                        <li>[Responsibility or achievement 2]</li>
+                        <li>[Responsibility or achievement 3, if applicable]</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-1">Previous Job Title / Role</h3>
+                    <p class="text-md text-slate-500 mb-2">Previous Company Name | City, State | Dates</p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1 pl-4">
+                        <li>[Responsibility or achievement 1]</li>
+                        <li>[Responsibility or achievement 2]</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-10 text-center">
+                 <h3 class="text-2xl font-semibold text-slate-800 mb-4">Key Skills</h3>
+                 <div class="flex flex-wrap justify-center gap-2 mb-10">
+                    <span class="tag">Product Design</span>
+                    <span class="tag">Hardware Development</span>
+                    <span class="tag">Cross-functional Collaboration</span>
+                    <span class="tag">Project Management</span>
+                    <span class="tag">User Experience (UX)</span>
+                    </div>
+                <a href="your-resume-link.pdf" target="_blank" class="btn btn-primary">
+                    Download My Resume
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block ml-2" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 md:py-24 bg-slate-800 text-slate-200">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Get In Touch</h2>
+            <p class="text-lg text-slate-300 mb-10">
+                I'm always open to discussing new product ideas, collaborations, or opportunities. Feel free to reach out!
+            </p>
+            <a href="mailto:donny5588@gmail.com" class="btn btn-primary text-lg mb-6 inline-block">
+                Email Me: donny5588@gmail.com
+            </a>
+            <div class="flex justify-center space-x-6">
+                <a href="https://www.linkedin.com/in/donny-yang" target="_blank" class="text-slate-300 hover:text-teal-400 transition-colors">
+                    <span class="sr-only">LinkedIn</span>
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+                </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center">
+        <p>&copy; <span id="currentYear"></span> Donny Yang. All rights reserved.</p>
+        <p class="text-sm">Designed with Tailwind CSS.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        // Select all navigation links that point to an anchor on the page
+        const navLinks = document.querySelectorAll('nav a[href^="#"], #mobile-menu a[href^="#"]');
+
+
+        mobileMenuButton.addEventListener('click', () => {
+            const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuButton.setAttribute('aria-expanded', !expanded);
+            mobileMenu.classList.toggle('hidden');
+            // Toggle icons
+            mobileMenuButton.querySelectorAll('svg').forEach(icon => icon.classList.toggle('hidden'));
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                mobileMenuButton.querySelectorAll('svg')[0].classList.remove('hidden'); // Show hamburger
+                mobileMenuButton.querySelectorAll('svg')[1].classList.add('hidden');    // Hide close
+            });
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Smooth scroll for navigation links (both desktop and mobile)
+        navLinks.forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.hash !== "") { // Make sure # is present
+                    // Check if the link is for the current page
+                    if (window.location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && window.location.hostname === this.hostname) {
+                        e.preventDefault(); // Prevent default anchor click behavior
+                        const targetElement = document.querySelector(this.hash);
+                        if (targetElement) {
+                            const navHeight = document.querySelector('nav').offsetHeight;
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
