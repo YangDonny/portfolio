@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth; /* Ensures smooth scrolling for anchor links */
+            scroll-behavior: smooth; 
         }
         .nav-link {
             @apply px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-200 hover:text-slate-900 transition-colors;
@@ -23,36 +23,53 @@
         .btn {
             @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
         }
-        /* Primary button style - using teal as an accent */
         .btn-primary {
             @apply bg-teal-600 text-white hover:bg-teal-700 shadow-md hover:shadow-lg;
         }
-        /* Secondary/default button style - more subdued */
         .btn-secondary {
             @apply bg-slate-600 text-slate-100 hover:bg-slate-500 shadow-sm hover:shadow-md;
         }
         .link-accent {
-            @apply text-teal-600 hover:text-teal-700 font-medium;
+            @apply text-teal-600 hover:text-teal-700 font-medium cursor-pointer; /* Added cursor-pointer */
         }
-        .tag {
-            @apply inline-block bg-slate-200 text-slate-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full;
+        .skill-tag { 
+            @apply inline-block bg-slate-200 text-slate-700 text-sm font-medium mr-2 mb-2 px-4 py-2 rounded-lg shadow-sm;
         }
-        /* Custom scrollbar for a more elegant feel (optional) */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1; /* Light gray track */
+            background: #f1f1f1; 
         }
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1; /* slate-300 */
+            background: #cbd5e1; 
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; /* slate-500 */
+            background: #94a3b8; 
         }
         .list-item-spacing > li {
             @apply mb-1;
+        }
+
+        /* Modal Styles */
+        .modal-backdrop {
+            @apply fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 z-[100] transition-opacity duration-300;
+        }
+        .modal-content {
+            @apply bg-white p-6 md:p-8 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95;
+        }
+        .modal-open .modal-content {
+            @apply scale-100;
+        }
+        .modal-title {
+            @apply text-2xl font-bold text-slate-800 mb-4;
+        }
+        .modal-body img {
+            @apply rounded-lg mb-4 w-full max-h-72 object-contain; 
+        }
+        .modal-body p { 
+            @apply text-slate-600 leading-relaxed mb-3;
         }
     </style>
 </head>
@@ -69,7 +86,6 @@
                         <a href="#home" class="nav-link">Home</a>
                         <a href="#about" class="nav-link">About</a>
                         <a href="#products" class="nav-link">Products</a>
-                        <a href="#asus-product-list" class="nav-link">ASUS Models</a>
                         <a href="#experience" class="nav-link">Experience</a>
                         <a href="#contact" class="nav-link">Contact</a>
                     </div>
@@ -92,7 +108,6 @@
                 <a href="#home" class="block nav-link text-base">Home</a>
                 <a href="#about" class="block nav-link text-base">About</a>
                 <a href="#products" class="block nav-link text-base">Products</a>
-                <a href="#asus-product-list" class="block nav-link text-base">ASUS Models</a>
                 <a href="#experience" class="block nav-link text-base">Experience</a>
                 <a href="#contact" class="block nav-link text-base">Contact</a>
             </div>
@@ -120,11 +135,11 @@
                     <img src="https://raw.githubusercontent.com/YangDonny/portfolio/0a2b8a7c0598fd76e04224dab9310a5790ceccf6/images/headshot" alt="Donny Yang" class="rounded-full shadow-xl mx-auto w-48 h-48 md:w-64 md:h-64 object-cover object-top" onerror="this.onerror=null; this.src='https://placehold.co/300x300/E2E8F0/475569?text=Image+Not+Found';">
                 </div>
                 <div class="md:w-2/3">
-                    <p class="text-lg text-slate-600 leading-relaxed mb-4">
-                        Hello! I'm Donny. [Insert a brief introduction about yourself. What are you passionate about? What drives you in your professional field? Mention 2-3 key strengths or areas of expertise related to product design, development, or your specific field. This text is TBD by you.]
+                    <p class="text-lg text-slate-600 leading-relaxed mb-4 text-justify">
+                        Hello! I'm Donny (Tung-Ying) Yang, a results-driven Product Manager. I leverage data for strategic decision-making and develop innovative products that boost user experience and market success. Key strengths include market analysis, strategic product development, and tech-driven innovation.
                     </p>
-                    <p class="text-lg text-slate-600 leading-relaxed mb-4">
-                        [Add another paragraph with more details. Perhaps your journey into your current field, your design philosophy, or specific types of products/projects you enjoy creating. Keep it concise and engaging. This text is TBD by you.]
+                    <p class="text-lg text-slate-600 leading-relaxed mb-4 text-justify">
+                        My career focuses on aligning technology with user needs. I'm skilled in defining product roadmaps and collaborating with cross-functional teams, notably contributing to key AiO and Chromebook successes at ASUS. I've also optimized online education platforms through UI/UX and product strategy enhancements. My goal is to apply analytical and product expertise to achieve compelling results.
                     </p>
                     </div>
             </div>
@@ -136,101 +151,118 @@
             <h2 class="section-title">My Products</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                 <div class="card">
-                    <img src="https://placehold.co/600x400/D1D5DB/1F2937?text=All-in-One+PC+Alpha" alt="All-in-One PC Alpha" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/D1D5DB/1F2937?text=Image+Not+Found';">
+                    <img src="[Your Thumbnail Image URL for AIO PC 1]" alt="[Product Name for AIO PC 1]" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/D1D5DB/1F2937?text=AIO+PC+1';">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-slate-800 mb-2">All-in-One PC Alpha</h3>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">[Product Name for AIO PC 1]</h3>
                         <p class="text-slate-600 text-sm mb-4">
-                            [Brief description of the first All-in-One PC. Highlight key features, design aspects, or target user.]
+                            [Brief description for AIO PC 1 on the card.]
                         </p>
-                        <a href="#" target="_blank" class="link-accent inline-flex items-center">
+                        <span class="link-accent product-modal-trigger inline-flex items-center" 
+                              data-title="[Modal Title for AIO PC 1]"
+                              data-img-src="[Modal Image URL for AIO PC 1]"
+                              data-description="[Detailed description for AIO PC 1 for the modal. Use \n for new paragraphs.]">
                             View Details
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
-                        </a>
+                        </span>
                         <div class="mt-4">
-                            <span class="tag">All-in-One PC</span>
-                            <span class="tag">Performance</span>
+                            <span class="skill-tag">[Tag 1 for AIO PC 1]</span>
+                            <span class="skill-tag">[Tag 2 for AIO PC 1]</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <img src="https://placehold.co/600x400/9CA3AF/111827?text=All-in-One+PC+Beta" alt="All-in-One PC Beta" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/9CA3AF/111827?text=Image+Not+Found';">
+                    <img src="[Your Thumbnail Image URL for AIO PC 2]" alt="[Product Name for AIO PC 2]" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/9CA3AF/111827?text=AIO+PC+2';">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-slate-800 mb-2">All-in-One PC Beta</h3>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">[Product Name for AIO PC 2]</h3>
                         <p class="text-slate-600 text-sm mb-4">
-                            [Brief description of the second All-in-One PC. Emphasize different features or design choices compared to the first one.]
+                            [Brief description for AIO PC 2 on the card.]
                         </p>
-                        <a href="#" target="_blank" class="link-accent inline-flex items-center">
+                        <span class="link-accent product-modal-trigger inline-flex items-center"
+                              data-title="[Modal Title for AIO PC 2]"
+                              data-img-src="[Modal Image URL for AIO PC 2]"
+                              data-description="[Detailed description for AIO PC 2 for the modal. Use \n for new paragraphs.]">
                             View Details
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
-                        </a>
+                        </span>
                         <div class="mt-4">
-                            <span class="tag">All-in-One PC</span>
-                            <span class="tag">Compact Design</span>
+                            <span class="skill-tag">[Tag 1 for AIO PC 2]</span>
+                            <span class="skill-tag">[Tag 2 for AIO PC 2]</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
-                     <img src="https://placehold.co/600x400/E5E7EB/374151?text=Chromebook+Swift" alt="Chromebook Swift" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/E5E7EB/374151?text=Image+Not+Found';">
+                     <img src="[Your Thumbnail Image URL for Chromebook]" alt="[Product Name for Chromebook]" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/E5E7EB/374151?text=Chromebook';">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Chromebook Swift</h3>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">[Product Name for Chromebook]</h3>
                         <p class="text-slate-600 text-sm mb-4">
-                           [Brief description of the Chromebook. Focus on its portability, security, or target audience like students/professionals.]
+                           [Brief description for Chromebook on the card.]
                         </p>
-                        <a href="#" target="_blank" class="link-accent inline-flex items-center">
+                        <span class="link-accent product-modal-trigger inline-flex items-center"
+                              data-title="[Modal Title for Chromebook]"
+                              data-img-src="[Modal Image URL for Chromebook]"
+                              data-description="[Detailed description for Chromebook for the modal. Use \n for new paragraphs.]">
                             View Details
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
-                        </a>
+                        </span>
                          <div class="mt-4">
-                            <span class="tag">Chromebook</span>
-                            <span class="tag">Cloud OS</span>
+                            <span class="skill-tag">[Tag 1 for Chromebook]</span>
+                            <span class="skill-tag">[Tag 2 for Chromebook]</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <img src="https://placehold.co/600x400/F3F4F6/4B5563?text=Website+Innovate" alt="Website Innovate" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/F3F4F6/4B5563?text=Image+Not+Found';">
+                    <img src="[Your Thumbnail Image URL for Website 1]" alt="[Product Name for Website 1]" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/F3F4F6/4B5563?text=Website+1';">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Website Project: Innovate</h3>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">[Product Name for Website 1]</h3>
                         <p class="text-slate-600 text-sm mb-4">
-                           [Description of the first website project. Mention its purpose, key features, and technologies used, e.g., e-commerce, portfolio.]
+                           [Brief description for Website 1 on the card.]
                         </p>
-                        <a href="#" target="_blank" class="link-accent inline-flex items-center">
-                            View Live Site
+                        <span class="link-accent product-modal-trigger inline-flex items-center"
+                              data-title="[Modal Title for Website 1]"
+                              data-img-src="[Modal Image URL for Website 1]"
+                              data-description="[Detailed description for Website 1 for the modal. Use \n for new paragraphs.]"
+                              data-live-link="[Live URL for Website 1, if any]">
+                            View Details
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
-                        </a>
+                        </span>
                          <div class="mt-4">
-                            <span class="tag">Web Development</span>
-                            <span class="tag">UX/UI</span>
+                            <span class="skill-tag">[Tag 1 for Website 1]</span>
+                            <span class="skill-tag">[Tag 2 for Website 1]</span>
                          </div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <img src="https://placehold.co/600x400/E5E7EB/1F2937?text=Website+Connect" alt="Website Connect" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/E5E7EB/1F2937?text=Image+Not+Found';">
+                    <img src="[Your Thumbnail Image URL for Website 2]" alt="[Product Name for Website 2]" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/E5E7EB/1F2937?text=Website+2';">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-slate-800 mb-2">Website Project: Connect</h3>
+                        <h3 class="text-xl font-semibold text-slate-800 mb-2">[Product Name for Website 2]</h3>
                         <p class="text-slate-600 text-sm mb-4">
-                           [Description of the second website project. Highlight different aspects, perhaps a different type of site or technology stack.]
+                           [Brief description for Website 2 on the card.]
                         </p>
-                        <a href="#" target="_blank" class="link-accent inline-flex items-center">
-                            View Live Site
+                        <span class="link-accent product-modal-trigger inline-flex items-center"
+                              data-title="[Modal Title for Website 2]"
+                              data-img-src="[Modal Image URL for Website 2]"
+                              data-description="[Detailed description for Website 2 for the modal. Use \n for new paragraphs.]"
+                              data-live-link="[Live URL for Website 2, if any]">
+                            View Details
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
-                        </a>
+                        </span>
                          <div class="mt-4">
-                            <span class="tag">Web Design</span>
-                            <span class="tag">Frontend</span>
+                            <span class="skill-tag">[Tag 1 for Website 2]</span>
+                            <span class="skill-tag">[Tag 2 for Website 2]</span>
                         </div>
                     </div>
                 </div>
@@ -240,8 +272,8 @@
 
     <section id="asus-product-list" class="py-16 md:py-24 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="section-title">ASUS Product Involvement</h2>
-            <p class="text-center text-slate-600 leading-relaxed mb-10 max-w-2xl mx-auto">
+            <h2 class="section-title md:text-center">ASUS Product Involvement</h2>
+            <p class="text-slate-600 leading-relaxed mb-10 max-w-2xl mx-auto text-left md:text-center">
                 During my tenure at ASUS, I contributed to the development and creation of a wide range of products. Below is a list of models I was involved with:
             </p>
             <div class="grid md:grid-cols-2 gap-x-8 gap-y-6 text-slate-700">
@@ -269,37 +301,59 @@
             <h2 class="section-title">Experience & Skills</h2>
             <div class="space-y-8 mb-10">
                 <div>
-                    <h3 class="text-2xl font-semibold text-slate-800 mb-1">[Your Job Title at ASUS]</h3>
-                    <p class="text-md text-slate-500 mb-2">ASUS | [City, State] | [Dates of Employment]</p>
-                    <p class="text-slate-600 mb-2">
-                        Contributed to the design, development, or launch of various All-in-One PCs and Chromebooks, including models from the A7, M3 (WFA - AMD Mendocino, WUA - AMD Lucienne), V241 (Intel Tiger Lake), and CX series. 
-                        [Add 1-2 more specific achievements or responsibilities from your role at ASUS here.]
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-1">Commercial Computer Product Manager</h3>
+                    <p class="text-md text-slate-500 mb-2">ASUS | Taipei, Taiwan | July 2020 - May 2023</p>
+                    <p class="text-slate-600 mb-2 text-justify">
+                        As a Product Manager for commercial computers, I led the development and market strategy for a diverse range of All-in-One PCs and Chromebooks. My role involved extensive sales and market analysis, defining product roadmaps, and driving technology innovation to enhance user experience and product competitiveness.
                     </p>
                     <ul class="list-disc list-inside text-slate-600 space-y-1 pl-4">
-                        <li>[Responsibility or achievement 1 related to product design/development]</li>
-                        <li>[Responsibility or achievement 2]</li>
-                        <li>[Responsibility or achievement 3, if applicable]</li>
+                        <li>Drove the V241E to become the top-selling model, capturing 30% of ASUS's internal market share.</li>
+                        <li>Achieved a 70% year-over-year sales increase in the China market in 2022 through strategic implementation.</li>
+                        <li>Spearheaded the development of 10+ models, including the market-leading V241E and innovative CX34 Chromebook.</li>
+                        <li>Analyzed technology, supply, and price trend of panel and GPU, resulting in a 30% reduction in component costs.</li>
+                        <li>Mentored two new employees and assisted them in managing five models.</li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-semibold text-slate-800 mb-1">Previous Job Title / Role</h3>
-                    <p class="text-md text-slate-500 mb-2">Previous Company Name | City, State | Dates</p>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-1">Chief Information Officer</h3>
+                    <p class="text-md text-slate-500 mb-2">Tai School (Online Finance Courses Website) | Taipei, Taiwan | Sept 2019 - May 2020</p>
                     <ul class="list-disc list-inside text-slate-600 space-y-1 pl-4">
-                        <li>[Responsibility or achievement 1]</li>
-                        <li>[Responsibility or achievement 2]</li>
+                        <li>Played a pivotal role in UI/UX design, product strategy, and development timeline management.</li>
+                        <li>Attained a 20% reduction in website load time by coordinating with designer, engineer, and courses department.</li>
+                        <li>Enhanced course engagement and conversion rates by 40% through targeted customer and web data analysis.</li>
                     </ul>
                 </div>
             </div>
             <div class="mt-10 text-center">
-                 <h3 class="text-2xl font-semibold text-slate-800 mb-4">Key Skills</h3>
-                 <div class="flex flex-wrap justify-center gap-2 mb-10">
-                    <span class="tag">Product Management</span>
-                    <span class="tag">Hardware Product Lifecycle</span>
-                    <span class="tag">Cross-functional Collaboration</span>
-                    <span class="tag">Market Analysis</span>
-                    <span class="tag">Roadmap Planning</span>
+                 <h3 class="text-2xl font-semibold text-slate-800 mb-10">Key Skills</h3>
+                 
+                 <div class="max-w-3xl mx-auto text-left"> 
+                    <div class="mb-8"> 
+                        <h4 class="text-xl font-semibold text-slate-700 mb-4 text-center md:text-left">Technical Skills</h4>
+                        <p class="text-slate-600 leading-relaxed text-center md:text-left">
+                            Python, SQL, Machine Learning, Tableau, Power BI, Oracle Demantra, Salesforce, Microsoft Office
+                        </p>
                     </div>
-                <a href="your-resume-link.pdf" target="_blank" class="btn btn-primary">
+                    
+                    <div>
+                        <h4 class="text-xl font-semibold text-slate-700 mb-4 text-center md:text-left">Professional Skills</h4>
+                        <p class="text-slate-600 leading-relaxed text-center md:text-left">
+                            Product Management, Project Management, Data Analysis, Financial Modeling, Market Analysis, Strategic Product Development, CFA Level 1
+                        </p>
+                    </div>
+                 </div>
+
+                 <div class="mt-12 mb-10">
+                     <h3 class="text-xl font-semibold text-slate-800 mb-6">Certifications</h3>
+                     <div class="flex justify-center">
+                        <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/117863567" 
+                             alt="CFA Level 1 Credential Badge" 
+                             style="width: 150px; height: 173px; border: 0;"
+                             onerror="this.onerror=null; this.src='https://placehold.co/150x173/E2E8F0/475569?text=Badge+Error'; this.alt='CFA Badge Not Found';">
+                     </div>
+                 </div>
+
+                <a href="https://raw.githubusercontent.com/YangDonny/portfolio/ab9094b1a0a77586aa6589c66d2383d8fef88b65/images/Tung%20Ying%20Yang%20Resume.pdf" download="Tung_Ying_Yang_Resume.pdf" class="btn btn-primary mt-8"> 
                     Download My Resume
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block ml-2" viewBox="0 0 20 20" fill="currentColor">
                       <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -334,48 +388,58 @@
         <p class="text-sm">Designed with Tailwind CSS.</p>
     </footer>
 
+    <div id="productModal" class="modal-backdrop hidden opacity-0">
+        <div class="modal-content opacity-0">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modalTitle" class="modal-title">Product Title</h3>
+                <button id="closeModalButton" class="text-slate-500 hover:text-slate-700 text-2xl">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="https://placehold.co/800x600/E2E8F0/475569?text=Product+Image" alt="Product Image" onerror="this.onerror=null; this.src='https://placehold.co/800x600/E2E8F0/475569?text=Image+Not+Found';">
+                <div id="modalDescriptionContainer">
+                    {/* Paragraphs will be injected here by JavaScript */}
+                </div>
+                <div id="modalLiveLinkContainer" class="mt-4">
+                    {/* Live link button will be injected here if data-live-link is present */}
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        // Select all navigation links that point to an anchor on the page
-        const navLinks = document.querySelectorAll('nav a[href^="#"], #mobile-menu a[href^="#"]');
-
+        const navLinks = document.querySelectorAll('nav a[href^="#"]:not(.product-modal-trigger), #mobile-menu a[href^="#"]:not(.product-modal-trigger)'); 
 
         mobileMenuButton.addEventListener('click', () => {
             const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
             mobileMenuButton.setAttribute('aria-expanded', !expanded);
             mobileMenu.classList.toggle('hidden');
-            // Toggle icons
             mobileMenuButton.querySelectorAll('svg').forEach(icon => icon.classList.toggle('hidden'));
         });
 
-        // Close mobile menu when a link is clicked
-        mobileMenu.querySelectorAll('a').forEach(link => {
+        mobileMenu.querySelectorAll('a:not(.product-modal-trigger)').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
                 mobileMenuButton.setAttribute('aria-expanded', 'false');
-                mobileMenuButton.querySelectorAll('svg')[0].classList.remove('hidden'); // Show hamburger
-                mobileMenuButton.querySelectorAll('svg')[1].classList.add('hidden');    // Hide close
+                mobileMenuButton.querySelectorAll('svg')[0].classList.remove('hidden'); 
+                mobileMenuButton.querySelectorAll('svg')[1].classList.add('hidden');    
             });
         });
 
-        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Smooth scroll for navigation links (both desktop and mobile)
         navLinks.forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                if (this.hash !== "") { // Make sure # is present
-                    // Check if the link is for the current page
+                if (this.hash !== "") { 
                     if (window.location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && window.location.hostname === this.hostname) {
-                        e.preventDefault(); // Prevent default anchor click behavior
+                        e.preventDefault(); 
                         const targetElement = document.querySelector(this.hash);
                         if (targetElement) {
                             const navHeight = document.querySelector('nav').offsetHeight;
                             const elementPosition = targetElement.getBoundingClientRect().top;
                             const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-
                             window.scrollTo({
                                 top: offsetPosition,
                                 behavior: "smooth"
@@ -385,6 +449,84 @@
                 }
             });
         });
+
+        // Modal Functionality
+        const productModal = document.getElementById('productModal');
+        const modalContent = productModal.querySelector('.modal-content');
+        const closeModalButton = document.getElementById('closeModalButton');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalImage = document.getElementById('modalImage');
+        const modalDescriptionContainer = document.getElementById('modalDescriptionContainer');
+        const modalLiveLinkContainer = document.getElementById('modalLiveLinkContainer');
+        const productModalTriggers = document.querySelectorAll('.product-modal-trigger');
+
+        productModalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function(event) {
+                event.preventDefault(); 
+                
+                const title = this.dataset.title || "Product Details";
+                const imgSrc = this.dataset.imgSrc || "https://placehold.co/800x600/E2E8F0/475569?text=Product+Image";
+                const description = this.dataset.description || "More information about this product will be available soon.";
+                const liveLink = this.dataset.liveLink;
+
+                modalTitle.textContent = title;
+                modalImage.src = imgSrc;
+                modalImage.alt = title + " Image";
+                
+                modalDescriptionContainer.innerHTML = '';
+                modalLiveLinkContainer.innerHTML = '';
+
+                description.split('\\n').forEach(paraText => {
+                    const p = document.createElement('p');
+                    p.className = 'text-slate-600 leading-relaxed mb-3';
+                    p.textContent = paraText;
+                    modalDescriptionContainer.appendChild(p);
+                });
+                
+                if (liveLink) {
+                    const linkButton = document.createElement('a');
+                    linkButton.href = liveLink;
+                    linkButton.target = '_blank';
+                    linkButton.rel = 'noopener noreferrer';
+                    linkButton.className = 'btn btn-primary inline-block mt-4'; 
+                    linkButton.textContent = 'View Live Site';
+                    modalLiveLinkContainer.appendChild(linkButton);
+                }
+
+                productModal.classList.remove('hidden');
+                setTimeout(() => { 
+                    productModal.classList.remove('opacity-0');
+                    modalContent.classList.remove('opacity-0', 'scale-95');
+                    modalContent.classList.add('scale-100');
+                }, 10); 
+                document.body.style.overflow = 'hidden'; 
+            });
+        });
+
+        function hideModal() {
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('opacity-0', 'scale-95');
+            productModal.classList.add('opacity-0');
+            setTimeout(() => {
+                productModal.classList.add('hidden');
+            }, 300); 
+            document.body.style.overflow = ''; 
+        }
+
+        closeModalButton.addEventListener('click', hideModal);
+
+        productModal.addEventListener('click', function(event) {
+            if (event.target === productModal) { 
+                hideModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && !productModal.classList.contains('hidden')) {
+                hideModal();
+            }
+        });
+
     </script>
 
 </body>
